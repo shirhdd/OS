@@ -1,0 +1,104 @@
+shirhdd, itayyamin
+Shir Hadad (323101998), Itay Yamin (319011276)
+EX: 2
+
+FILES:
+uthreads.cpp thread.cpp thread.h
+
+ANSWERS:
+
+Part 1: Theoretical Questions
+ 1. Siglongjmp and sigsetjmp:
+  a. Describe what the functions sigsetjmp and siglongjmp do.
+sigsetjmp:
+The sigsetjmp function saves the calling environment in its env argument
+for later
+use by siglongjmp - it saves the stack context and CPU state for later use.
+If the value of the savemask argument is not 0,
+sigsetjmp() will also save the current signall amsk of the calling thread
+as part of the calling environment.
+siglongjmp:
+The siglongjmp function restores the environment saved by the most recent
+invocation of sigsetjmp in the same thread, with the corresponding sigjmp_buf
+argument. If there is no such onvocation or if the function containing the
+invocation of sigsetjmp has terminated execution in the interim, the behaviour
+is undefined.
+
+
+  b. Describe how sigsetjmp and siglongjmp affect masking.
+  sigsetjmp and siglongjmp are two functions that allow the programmer to
+   implement non-local jumps
+   between different parts of a program while taking care of signals and
+   their masks.
+   sigsetjmp and siglongjmp affect masking by saving and restoring the
+   signal mask along with the execution context.
+   Any signals that were blocked before sigsetjmp will remain
+   blocked after siglongjmp is called,
+   unless they were unblocked explicitly.
+
+
+2. Describe one general use of user-level threads and explain why user-level
+threads are a reasonable choice for your example.
+
+user level threads are threads manged by a user level library or
+runtime and not by operating system.
+one example of use case is in web server. Many network applications
+involve waiting for input or output from multiple
+network connections, which can be handled concurrently
+using multiple threads. A kernel thread is way more expensive way
+which wont be able to scale well.
+ In that way, user level threads are a reasonable choice
+ because they are much more lightweight and can do the same things
+ as a lower level but with a lower overhead.
+
+
+
+3. Google’s Chrome browser creates a new process for each tab.
+ What are the advantages and disadvantages of creating the new process
+ (instead of creating a kernel-level thread)?
+
+ Advantages:
+ -Isolation: Every process has a range of addresses for itself and by that
+ there are no tabs that interrupt the tabs next to them and it helps stability.
+-Security: It helps prevent malicious code get into the way
+-Robustness: If one tab get's ruined it doesn't disable all of the other tabs.
+
+Disadvantages:
+- Overhead: creating a new process for each tab can be more resource-intensive
+than creating a kernel-level thread.
+ This is because creating a new process requires more system resources, such
+ as memory and CPU time,
+  than creating a new thread.
+-Increased complexity: Managing multiple processes requires more complex code
+ and can be more difficult to debug and maintain than managing threads within
+  a single process. This complexity can increase the risk of bugs and security
+  vulnerabilities.
+-Inter-process communication: Communicating between different processes can be
+ more complex and less efficient than
+ communicating between threads. This is because inter-process communication
+ (IPC) requires marshaling data between
+ different memory spaces and can introduce latency and overhead.
+
+
+4. Interrupts and signals:
+a. Open an application (for example, “Shotwell” on one of the CS computers).
+ Use the “ps -A” command to extract the application’s pid (process ID).
+b. Open a shell and type “kill pid”.
+c. Explain which interrupts and signals are
+ involved during the command execution, what triggered them and who should
+ handle them. In your answer, refer to the keyboard, OS, shell,
+  and the application you just killed
+
+
+5. What is the difference between ‘real’ and ‘virtual’ time?
+ Give one example of using each.
+
+ Real time refers to the actual time that elapses in the physical world,
+ while virtual time refers to the time that a computer system measures
+ or simulates.
+ One example of real time is a clock that shows the actual time of day,
+ independent of any computer or software system.
+ . For example, a computer game may simulate the passage of time within the game world, 
+ such that a day in the game corresponds to a certain amount of real time. This virtual time is measured 
+ and managed by the game engine or operating system, and is used to control the behavior of the game world and 
+ its characters.
