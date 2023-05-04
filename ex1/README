@@ -1,0 +1,31 @@
+itayyamin, shirhdd
+itay yamin (319011276), shir hadad (323101998)
+EX: 1
+
+FILES:
+osm.cpp -- a file with code
+osm.h -- a file with some headers
+
+REMARKS:
+---
+
+ANSWERS:
+
+Q1:
+
+It makes a directry with the name welcome dir with the permissions for it.
+It Makes another directory inside it with the same permssions.
+It changes the space alocating for the calling prccess with the null input
+It changes the space alcating for  the calling proccess with the entered input.
+It opens a file in a relative way so that t has specific permssions of 666, with a write only option and creating a fle if it doesn't exist.O_TRUNC causes the fie t be truncated f it exists.
+It opens a file from the given path for read only and it enables the close-on-exec flag for the new fe descriptor.
+fstat gets the status infrmation about the object specified by the open descriptor and stores the information in the area of memory indecated by the buffer argument.
+The read command reads an amount of bytes into a specific buffer in the memory.
+The lseek command repositions the file offset of the open file description asscated with the fe descriptor.
+The close function closes the read file.
+fstat again gets the statu information about the object specified number 3
+and then writes into it and closes it.
+The unlink functions unlinks the file from its directory.
+and then it tries t unlink a directory and it is obviusly not possible
+The function remves dir is t remve the directory itself.
+It exits the program with a good end because its 0.
